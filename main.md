@@ -41,3 +41,7 @@ lettcode-cn/longest-palindromic-substring
 # Manacher算法
 专门用于查找最长回文子串的算法。
 lettcode-cn/longest-palindromic-substring
+
+# 堆排序
+lettcode-cn/kth-largest-element-in-a-stream
+703
