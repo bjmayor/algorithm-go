@@ -2,42 +2,19 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 func twoSum(nums []int, target int) []int {
-	var sorted = make([]int, len(nums))
-	copy(sorted, nums)
-	sort.Ints(sorted)
-	i :=0
-	j:=len(sorted)-1
-
-	var num1,num2 int
-	for true {
-		sum := sorted[i]+sorted[j]
-		if  sum == target {
-			num1 = sorted[i]
-			num2 = sorted[j]
-			break
-		}	else if sum > target {
-			j--
-		} else {
-			i++
+	var m = make(map[int]int)
+	for i,v := range nums {
+		m[v] = i
+	}
+	for i,v := range nums {
+		if vv, ok := m[target-v];ok && i!=vv {
+			return []int{i,vv}
 		}
 	}
-	var result  = make([]int, 2)
-	result[0] = -1
-	result[1] = -1
-	for i:=0;i<len(nums);i++ {
-		if nums[i] == num1 && result[0]==-1{
-			result[0] = i
-			//continue;
-		}
-		if nums[i] == num2 && result[1]==-1 && i!=result[0] {
-			result[1] = i
-		}
-	}
-	return result
+	return nil
 }
 
 func arrEqual(a, b []int) bool  {
@@ -58,7 +35,7 @@ func main() {
 		Target int
 		Expected []int
 	} {
-		{ []int{2, 7, 11, 15}, 9, []int{0,1} },
+		//{ []int{2, 7, 11, 15}, 9, []int{0,1} },
 		{ []int{3, 2, 4}, 6, []int{1,2} },
 		{ []int{3, 3}, 6, []int{0,1} },
 		{ []int{0,4,3,0}, 0, []int{0,3} },

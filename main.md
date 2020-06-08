@@ -28,3 +28,16 @@ smallest-avaiable-id,
  2，3，4，5，6，8，9，10，12，15
  
  这里是利用队列实现复杂度为O(n)的算法。
+
+# 并集查
+见 lettcode-cn/reverse-integer
+
+# 2点间所有最短路径问题
+见 lettcode-cn/word-ladder-li
+
+# 动态规划
+lettcode-cn/longest-palindromic-substring
+
+# Manacher算法
+专门用于查找最长回文子串的算法。
+lettcode-cn/longest-palindromic-substring
