@@ -3,7 +3,7 @@ package main
 
 import "fmt"
 
-//单调栈 算法
+//模拟交易
 func maxProfit(prices []int) int {
 	if len(prices) <= 1 {
 		return 0

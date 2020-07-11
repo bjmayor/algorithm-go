@@ -47,10 +47,10 @@ func main()  {
 	} {
 		{ 1500 ,859963392 },
 	}
-	for _, t := range tests {
+	for i, t := range tests {
 		var real = uglyNumber(t.Nums)
 		if real !=  t.Expected {
-			fmt.Println("expected:", t.Expected, " real:", real, t.Nums)
+			fmt.Println(i, " expected:", t.Expected, " real:", real, t.Nums)
 		}
 	}
 }
