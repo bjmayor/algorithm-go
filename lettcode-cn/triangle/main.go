@@ -3,16 +3,16 @@ package main
 import "fmt"
 
 func minimumTotal(triangle [][]int) int {
-	minPath := triangle[len(triangle)-1]//到达最底层的最小值
-	for i:=len(triangle)-2;i>=0;i-- {
-		for j:=0;j<=i;j++ {
-				minPath[j] = triangle[i][j] + min(minPath[j], minPath[j+1])
+	minPath := triangle[len(triangle)-1]
+	for j:=len(triangle)-2;j>=0;j-- {
+		for i:=0;i<=j;i++ {
+			minPath[i] = triangle[j][i]+min(minPath[i], minPath[i+1])
 		}
 	}
 	return minPath[0]
 }
 
-func min(x,y int) int {
+func min(x,y int) int  {
 	if x < y {
 		return x
 	}
