@@ -1,6 +1,8 @@
 package main
 
- type TreeNode struct {
+import "math"
+
+type TreeNode struct {
      Val   int
      Left  *TreeNode
      Right *TreeNode
@@ -88,34 +90,13 @@ func TraverBST(root *TreeNode, ) bool {
 
 //递归解, 用lower,upper 去限定区间
 func isValidBST2(root *TreeNode) bool {
-    return reverse(root, nil, nil)
+    return reverse(root, math.MinInt64, math.MaxInt64)
 }
 
-func reverse(root *TreeNode, lower *int, upper *int) bool  {
+func reverse(root *TreeNode, lower int, upper int) bool  {
     if root == nil {
         return true
     }
-
-    if lower != nil {
-        if root.Val <= *lower {
-            return false
-        }
-    }
-    if upper != nil {
-        if root.Val >= *upper {
-            return false
-        }
-    }
-    if root.Left != nil {
-        if ok := reverse(root.Left, lower, &root.Val); !ok {
-            return false
-        }
-    }
-
-    if root.Right!= nil {
-        if ok := reverse(root.Right, &root.Val, upper); !ok {
-            return false
-        }
-    }
-    return true
+    v := root.Val
+    return v>lower && v<upper && reverse(root.Left, lower, v) && reverse(root.Right, v, upper)
 }
