@@ -16,11 +16,13 @@ func NewUnionF(n int) *UnionF {
 }
 
 func (u *UnionF)FindRoot(b int) int {
-	root := b
+	root := b //默认的祖宗就是自己
+	// 递归找祖宗
 	for u.data[root]	!= root {
 			root = u.data[root]
 	}
 	tmp := b
+	// 压缩路径，整条链上的祖宗直接修改为root
 	for u.data[tmp]	!= root {
 		tmp,  u.data[tmp] = u.data[tmp],root
 	}
@@ -34,6 +36,7 @@ func (u *UnionF)remove(b int) {
 func (u *UnionF)Union(x,y int)  {
 	rootx := u.FindRoot(x)
 	rooty := u.FindRoot(y)
+	// 设置为共同的祖宗
 	if rootx != rooty {
 		u.data[rootx] = rooty
 	}
@@ -72,6 +75,7 @@ func numIslands(grid [][]byte) int {
 }
 
 func main()  {
+	//除了用并查集，也可以用着色法
 	////3
 	fmt.Println(numIslands([][]byte{
 		{'1','1','0','0','0'},

@@ -68,16 +68,16 @@ func maximumGap2(nums []int) int {
 	if min == max {
 		return 0
 	}
-	c_max := make([]int, len(nums)+1) //记录容器中的最大值
-	c_min := make([]int, len(nums)+1) //记录容器中的最小值
-	has := make([]bool, len(nums)+1)  //某个桶内是否已经装有数据,默认值false
+	c_max := make([]int, len(nums)) //记录桶中的最大值。
+	c_min := make([]int, len(nums)) //记录桶中的最小值
+	has := make([]bool, len(nums))  //某个桶内是否已经装有数据,默认值false
 	for _, v := range nums {
-		cid := CountCid(v, max, min, len(nums)) //求容器编号
-		if has[cid] == false {                  //该容器无数据则最大，最小都为v，更改标记
+		cid := CountCid(v, max, min, len(nums)) //求桶编号
+		if has[cid] == false {                  //该桶无数据则最大，最小都为v，更改标记
 			c_max[cid] = v
 			c_min[cid] = v
 			has[cid] = true
-		} else {					//该容器已有数据，则比较，更新
+		} else {					//该桶已有数据，则比较，更新
 			if c_max[cid] < v {
 				c_max[cid] = v
 			}
@@ -89,7 +89,7 @@ func maximumGap2(nums []int) int {
 	res := 0
 	lastMax := c_max[0]
 	i := 1
-	for ; i <= len(nums); i++ {
+	for ; i < len(nums); i++ {
 		if has[i] {
 			res = int(math.Max(float64(res), float64(c_min[i]-lastMax)))
 			lastMax = c_max[i]
@@ -98,11 +98,11 @@ func maximumGap2(nums []int) int {
 	return res
 }
 func CountCid(num, max, min, len int) (cid int) {
-	return (num - min) * (len + 1) / (max - min + 1)
+	return (num - min) * (len ) / (max - min + 1)
 }
 
 func main()  {
-	fmt.Println(maximumGap([]int{3,6,9,1}))//3
-	fmt.Println(maximumGap([]int{10}))//0
-	fmt.Println(maximumGap([]int{1, 10}))//999
+	fmt.Println(maximumGap2([]int{3,6,9,1}))//3
+	//fmt.Println(maximumGap([]int{10}))//0
+	//fmt.Println(maximumGap([]int{1, 10}))//999
 }
