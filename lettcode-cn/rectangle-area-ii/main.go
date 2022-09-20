@@ -89,5 +89,5 @@ func rectangleArea(rectangles [][]int) (ans int) {
 }
 
 func main() {
-	println(rectangleArea([][]int{{0, 0, 2, 2}, {1, 0, 2, 3}, {1, 0, 3, 1}}))
+	println(rectangleArea([][]int{{0, 0, 2, 2}, {1, 0, 2, 3}, {1, 0, 3, 1}})) // 6
 }
