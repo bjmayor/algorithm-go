@@ -1,10 +1,13 @@
 # 算法
+
 自娱自乐的。把见过的一些算法记录下来。
 
 # Fisher-Yates算法
+
 用于把数组打乱。
 
 # 最小可用ID
+
 smallest-avaiable-id,
 找出不走某列表的最小的非负整数。
 某列表大小可能上千万。
@@ -19,6 +22,7 @@ smallest-avaiable-id,
  如果小于等于的个数 刚好等于i, 说明左边的满了，再从右边的子集找，否则从左边的子集找。
  
  # 寻找丑数
+
  ugly-number
  寻找第1500个"丑数"。
  定义：
@@ -30,18 +34,23 @@ smallest-avaiable-id,
  这里是利用队列实现复杂度为O(n)的算法。
 
 # 并集查
+
 见 lettcode-cn/reverse-integer
 
 # 2点间所有最短路径问题
+
 见 lettcode-cn/word-ladder-li
 
 # 动态规划
+
 lettcode-cn/longest-palindromic-substring
 
 # Manacher算法
+
 专门用于查找最长回文子串的算法。
 lettcode-cn/longest-palindromic-substring
 
 # 堆排序
+
 lettcode-cn/kth-largest-element-in-a-stream
 703
