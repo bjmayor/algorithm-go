@@ -1,56 +1,60 @@
 package main
 
 import (
-	"fmt"
-	"sort"
+	"fmt"  // 导入fmt包用于格式化I/O
+	"sort" // 导入sort包用于排序
 )
 
+/**
+ * threeSum 函数用于在给定整数数组中找到所有不重复的三元组，使得每个三元组的和为零。
+ * 算法思想：首先对数组进行排序，然后使用双指针法来查找满足条件的三元组。
+ * 具体步骤如下：
+ * 1. 对数组进行排序，以便于后续的双指针查找。
+ * 2. 遍历数组，对于每个元素，固定一个数，然后在其后的数组中使用双指针查找另外两个数。
+ * 3. 使用双指针法：一个指针从当前元素的下一个位置开始，另一个指针从数组末尾开始。
+ * 4. 计算三个数的和，根据和的大小调整双指针的位置，直到找到所有满足条件的三元组。
+ * 5. 为了避免重复结果，跳过相同的元素。
+ *
+ * @param nums 整数数组
+ * @return [][]int 返回所有不重复的三元组
+ */
 func threeSum(nums []int) [][]int {
-	result := make([][]int,0)
-	sort.Ints(nums)
-	for i:=0; i<len(nums)-2; i++{
-
-		v := nums[i]
-		y :=i+1
-		z := len(nums)-1
-		left := 0-v
-		for y<z {
-			sum :=  nums[y]	+ nums[z]
-			if sum < left {
-				y++
-			} else if sum > left {
-				z--
-			} else {
-				result = append(result, []int{v,nums[y],nums[z]})
-				for y+1 < z {
-					if nums[y+1] == nums[y] {
-						y= y+1
-					} else {
-						break
-					}
+	result := make([][]int, 0) // 初始化结果切片，用于存储三元组
+	sort.Ints(nums)            // 对数组进行排序
+	for i := 0; i < len(nums)-2; i++ { // 遍历数组，固定第一个数
+		v := nums[i]            // 当前固定的数
+		y := i + 1              // 左指针初始化为当前数的下一个位置
+		z := len(nums) - 1      // 右指针初始化为数组末尾
+		left := 0 - v           // 目标和为0，计算剩余两个数的目标和
+		for y < z {             // 当左指针小于右指针时进行查找
+			sum := nums[y] + nums[z] // 计算当前左指针和右指针的和
+			if sum < left {          // 如果和小于目标和
+				y++                  // 左指针右移
+			} else if sum > left {   // 如果和大于目标和
+				z--                  // 右指针左移
+			} else {                 // 如果和等于目标和
+				result = append(result, []int{v, nums[y], nums[z]}) // 将三元组加入结果
+				// 跳过重复的元素
+				for y+1 < z && nums[y+1] == nums[y] { // 跳过左指针重复的元素
+					y = y + 1
 				}
-				y++
-				for y+1 < z {
-					if nums[z-1] == nums[z] {
-						z--
-					} else {
-						break
-					}
+				y++ // 左指针右移
+				for y+1 < z && nums[z-1] == nums[z] { // 跳过右指针重复的元素
+					z--
 				}
-				z--
+				z-- // 右指针左移
 			}
 		}
-		for i+1 < len(nums)-2 && nums[i+1] == nums[i]{
-			i = i+1
+		// 跳过重复的元素
+		for i+1 < len(nums)-2 && nums[i+1] == nums[i] { // 跳过固定数重复的元素
+			i = i + 1
 		}
 	}
-	return result
-
+	return result // 返回结果
 }
 
-func main()  {
+func main() {
 	fmt.Println(threeSum([]int{
-		-1,0,1,2,-1,-4,
+		-1, 0, 1, 2, -1, -4, // 测试用例
 	}))
 }
-
